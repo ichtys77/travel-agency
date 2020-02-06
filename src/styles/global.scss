@@ -20,4 +20,27 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
+.switchWrapper {
+  position: relative;
+
+  > :first-child ~ * {
+    position: absolute;
+    //top: 200px;
+    left: 0;
+    width: 100%;
+    //transition: 5s ease;
+    animation: slideIn 2s;
+  }
+  @keyframes slideIn {
+    0% {
+      top: 276px;
+    }
+    100% {
+      top: 76px;
+      //transition: ease 4s;
+    }
+  }
+
+}
+
 @import "./typography.scss";
