@@ -21,12 +21,12 @@ OrderForm.propTypes = {
 
 class OrderForm extends React.Component {
   render () {
-    const {tripCost, options} = this.props;
+    const {tripCost, options, setOrderOption} = this.props;
     return (
       <Row>
         {pricing.map(option => (
           <Col md={4} key={option.id}>
-            <OrderOption {...option} />
+            <OrderOption {...option} currentValue={options[option.id]} setOrderOption={setOrderOption}/>
           </Col>
         ))}
         <Col xs={12}>
@@ -40,6 +40,7 @@ class OrderForm extends React.Component {
 OrderForm.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
+  setOrderOption: PropTypes.func,
 };
 
 export default OrderForm;
