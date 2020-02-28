@@ -45,7 +45,7 @@ describe('Component TripSummary', () =>{
     expect(component.find('.tag').at(2)).toEqual[tags[2]];
   });
 
-  it('should crash if tags is false', () => {
+  it('should crash if tags array is missing or hollow', () => {
     const component = shallow(<TripSummary tags={[]}/>);
     expect(component.find('.tags')).toBeTruthy();
   });
