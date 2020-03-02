@@ -5,6 +5,40 @@ import {Row, Col} from 'react-flexbox-grid';
 import OrderSummary from '../OrderSummary/OrderSummary';
 import OrderOption from '../OrderOption/OrderOption';
 import pricing from '../../../data/pricing.json';
+import {calculateTotal} from '../../../utils/calculateTotal';
+import {formatPrice} from '../../../utils/formatPrice';
+import settings from '../../../data/settings';
+import Button from '../../common/Button/Button';
+
+const sendOrder = (options, tripCost, name, id, countryCode) => {
+  const totalCost = formatPrice(calculateTotal(tripCost, options));
+
+  const payload = {
+    tripName: name,
+    tripId: id,
+    countryCode: countryCode,
+    ...options,
+    totalCost,
+  };
+
+  const url = settings.db.url + '/' + settings.db.endpoint.orders;
+
+  const fetchOptions = {
+    cache: 'no-cache',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  };
+
+  fetch(url, fetchOptions)
+    .then(function(response){
+      return response.json();
+    }).then(function(parsedResponse){
+      console.log('parsedResponse', parsedResponse);
+    });
+};
 
 /* const OrderForm = ({tripCost, options}) => (
   <Row>
@@ -21,7 +55,7 @@ OrderForm.propTypes = {
 
 class OrderForm extends React.Component {
   render () {
-    const {tripCost, options, setOrderOption} = this.props;
+    const {tripCost, options, setOrderOption, name, id, countryCode} = this.props;
     return (
       <Row>
         {pricing.map(option => (
@@ -32,7 +66,11 @@ class OrderForm extends React.Component {
         <Col xs={12}>
           <OrderSummary tripCost={tripCost} options={options}/>
         </Col>
+        <Col xs={12}>
+          <Button onClick={() => sendOrder(options, tripCost, name, id, countryCode)}>Order now!</Button>
+        </Col>
       </Row>
+
     );
   }
 }
@@ -41,6 +79,9 @@ OrderForm.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
   setOrderOption: PropTypes.func,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  countryCode: PropTypes.string,
 };
 
 export default OrderForm;
