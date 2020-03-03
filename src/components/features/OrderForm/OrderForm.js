@@ -10,6 +10,19 @@ import {formatPrice} from '../../../utils/formatPrice';
 import settings from '../../../data/settings';
 import Button from '../../common/Button/Button';
 
+const formValidation = (options, tripCost, name, id, countryCode) => {
+  const { yourName, contactInfo } = options;
+  if (yourName == '' && contactInfo == '') {
+    window.alert('Fulfill Your name and contact info field');
+  } else if ( yourName == '') {
+    window.alert('Fulfill Your name field');
+  } else if ( contactInfo == '') {
+    window.alert('Fullfill the contact info field');
+  } else {
+    sendOrder (options, tripCost, name, id, countryCode);
+  }
+};
+
 const sendOrder = (options, tripCost, name, id, countryCode) => {
   const totalCost = formatPrice(calculateTotal(tripCost, options));
 
@@ -67,7 +80,7 @@ class OrderForm extends React.Component {
           <OrderSummary tripCost={tripCost} options={options}/>
         </Col>
         <Col xs={12}>
-          <Button onClick={() => sendOrder(options, tripCost, name, id, countryCode)}>Order now!</Button>
+          <Button onClick={() => formValidation(options, tripCost, name, id, countryCode)}>Order now!</Button>
         </Col>
       </Row>
 
