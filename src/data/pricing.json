@@ -36,22 +36,22 @@
     "id": "adults",
     "name": "Adult guests",
     "type": "number",
-    "defaultValue": 1,
+    "defaultValue": "1",
     "price": "100%",
     "limits": {
-      "min": 1,
-      "max": 9
+      "min": "1",
+      "max": "9"
     }
   },
   {
     "id": "children",
     "name": "Children (aged 3-17)",
     "type": "number",
-    "defaultValue": 0,
+    "defaultValue": "0",
     "price": "50%",
     "limits": {
-      "min": 0,
-      "max": 6
+      "min": "0",
+      "max": "6"
     }
   },
   {
