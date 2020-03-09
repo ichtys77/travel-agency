@@ -24,12 +24,18 @@ class HappyHourAd extends React.Component {
 
   render() {
     const countDown = this.getCountdownTime();
+    // console.log('countDown ', countDown);
+    let dynamicPromoInput;
+    if (countDown > 82800) {
+      dynamicPromoInput = 'lorem ipsum';
+    }
+    else {
+      dynamicPromoInput = formatTime(countDown);
+    }
     return (
       <div className={styles.component}>
         <h3 className={styles.title}>Happy Hour</h3>
-        <div className={styles.promoDescription}>
-          {countDown > 82800 ? 'lorem ipsum' : formatTime(countDown)}
-        </div>
+        <div className={styles.promoDescription}>{dynamicPromoInput}</div>
       </div>
     );
   }
