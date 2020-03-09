@@ -17,11 +17,11 @@ export const formatTime = (countdown) => {
     let hours = 0;
 
     seconds = (seconds + Math.floor(countdown % 60) + '').padStart(2, '0');
-    console.log(seconds);
+    // console.log(seconds);
     minutes = (minutes + Math.floor((countdown / 60) % 60) + '').padStart(2, '0');
-    console.log(minutes);
+    // console.log(minutes);
     hours = (hours + Math.floor(countdown / 3600 ) + '').padStart(2, '0');
-    console.log(hours);
+    // console.log(hours);
 
     return hours + ':' + minutes + ':' + seconds;
   }

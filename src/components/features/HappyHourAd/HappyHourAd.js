@@ -28,7 +28,7 @@ class HappyHourAd extends React.Component {
       <div className={styles.component}>
         <h3 className={styles.title}>Happy Hour</h3>
         <div className={styles.promoDescription}>
-          {countDown < 82800 ? 'lorem ipsum' : formatTime(countDown)}
+          {countDown > 82800 ? 'lorem ipsum' : formatTime(countDown)}
         </div>
       </div>
     );
